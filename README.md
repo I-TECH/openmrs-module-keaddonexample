@@ -1,9 +1,12 @@
-Overview
-========
+Kenya EMR Example Add-on Module
+===============================
 
-This is an example of a add-on module for the Kenya EMR. It uses the appframework module to define an app of its own.
+This is an example of a add-on module for the Kenya EMR. It uses the [appframework module](https://wiki.openmrs.org/display/docs/App+Framework+Module) to define an app of its own.
 The Kenya EMR module will show this app's icon on its homepage along with its own apps. Example also uses the
-uiframework module and can access any UI resource from the Kenya EMR module.
+[uiframework module](https://wiki.openmrs.org/display/docs/UI+Framework) and can access any UI resource from the Kenya EMR module.
+
+Technical Overview
+------------------
 
 To register an app, the module defines an app descriptor bean in its *webModuleApplicationContext.xml* file, e.g.
 
