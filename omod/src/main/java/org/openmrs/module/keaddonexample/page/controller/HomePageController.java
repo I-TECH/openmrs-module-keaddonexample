@@ -18,6 +18,7 @@ import org.openmrs.Patient;
 import org.openmrs.module.appframework.AppUiUtil;
 import org.openmrs.module.keaddonexample.ExampleConstants;
 import org.openmrs.module.kenyaemr.KenyaEmr;
+import org.openmrs.module.kenyaemr.KenyaEmrUiUtils;
 import org.openmrs.module.kenyaemr.form.FormConfig;
 import org.openmrs.ui.framework.UiUtils;
 import org.openmrs.ui.framework.annotation.SpringBean;
@@ -36,7 +37,8 @@ public class HomePageController {
 						   Session session,
 						   PageModel model,
 						   UiUtils ui,
-						   @SpringBean KenyaEmr emr) {
+						   @SpringBean KenyaEmr emr,
+						   @SpringBean KenyaEmrUiUtils kenyaUi) {
 
 		AppUiUtil.startApp("keaddonexample.example", session);
 
@@ -44,6 +46,6 @@ public class HomePageController {
 
 		FormConfig exampleForm = emr.getFormManager().getFormConfig(ExampleConstants.EXAMPLE_ADDON_FORM_UUID);
 
-		model.addAttribute("forms", Collections.singletonList(exampleForm));
+		model.addAttribute("forms", Collections.singletonList(kenyaUi.simpleForm(exampleForm, ui)));
 	}
 }
