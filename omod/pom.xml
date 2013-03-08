@@ -11,11 +11,9 @@
 	<artifactId>keaddonexample-omod</artifactId>
 	<packaging>jar</packaging>
 	<name>Kenya EMR Add-on Example Module OMOD</name>
-	<description>OMOD project for KenyaEMRAdd-onExample</description>
+	<description>OMOD project for KenyaEMR Add-on Example</description>
 
 	<dependencies>
-		
-		<!-- Begin OpenMRS modules -->
 		
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
@@ -37,10 +35,6 @@
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>uiframework-api</artifactId>
 		</dependency>
-						
-		<!-- End OpenMRS modules -->
-
-		<!-- Begin OpenMRS core -->
 
 		<dependency>
 			<groupId>org.openmrs.api</groupId>
@@ -74,8 +68,6 @@
 			<type>pom</type>
 			<scope>test</scope>
 		</dependency>
-		
-		<!-- End OpenMRS core -->
 
 	</dependencies>
 

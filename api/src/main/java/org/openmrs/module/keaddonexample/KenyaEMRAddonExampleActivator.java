@@ -17,13 +17,21 @@ package org.openmrs.module.keaddonexample;
 import org.apache.commons.logging.Log; 
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.module.ModuleActivator;
+import org.openmrs.module.kenyaemr.KenyaEmr;
+import org.openmrs.module.kenyaemr.MetadataManager;
+import org.openmrs.module.kenyaemr.form.FormConfig;
+import org.openmrs.module.kenyaemr.form.FormManager;
+
+import java.io.InputStream;
 
 /**
  * This class contains the logic that is run every time this module is either started or stopped.
  */
 public class KenyaEMRAddonExampleActivator implements ModuleActivator {
 	
-	protected Log log = LogFactory.getLog(getClass());
+	protected static final Log log = LogFactory.getLog(KenyaEMRAddonExampleActivator.class);
+
+	protected static final String PACKAGES_FILENAME = "packages.xml";
 		
 	/**
 	 * @see ModuleActivator#willRefreshContext()
@@ -43,14 +51,39 @@ public class KenyaEMRAddonExampleActivator implements ModuleActivator {
 	 * @see ModuleActivator#willStart()
 	 */
 	public void willStart() {
-		log.info("Starting Kenya EMR Add-on Example Module");
+		log.warn("Starting Kenya EMR Add-on Example Module");
 	}
 	
 	/**
 	 * @see ModuleActivator#started()
 	 */
 	public void started() {
-		log.info("Kenya EMR Add-on Example Module started");
+		try {
+			/**
+			 * Loads a metadata package from this module into the Kenya EMR. This example package contains one
+			 * HTML form only.
+			 */
+			InputStream stream = getClass().getClassLoader().getResourceAsStream(PACKAGES_FILENAME);
+
+			KenyaEmr.getInstance().getMetadataManager().loadPackagesFromXML(stream, getClass().getClassLoader());
+
+			/**
+			 * Registers an example form as a "once per visit" form which is available in the medical encounter and
+			 * medical chart apps.
+			 */
+			final String EXAMPLE_ADDON_FORM_UUID = "2a89533d-499f-453c-92c9-b38acb5446fd";
+
+			KenyaEmr.getInstance().getFormManager().registerForm(
+					EXAMPLE_ADDON_FORM_UUID,
+					FormConfig.Frequency.VISIT,
+					new String[] { "kenyaemr.medicalEncounter", "kenyaemr.medicalChart" }
+			);
+		}
+		catch (Exception ex) {
+			throw new RuntimeException("Failed to setup initial data", ex);
+		}
+
+		log.warn("Kenya EMR Add-on Example Module started");
 	}
 	
 	/**
@@ -66,5 +99,4 @@ public class KenyaEMRAddonExampleActivator implements ModuleActivator {
 	public void stopped() {
 		log.info("Kenya EMR Add-on Example Module stopped");
 	}
-		
 }

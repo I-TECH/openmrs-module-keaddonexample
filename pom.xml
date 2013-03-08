@@ -26,7 +26,7 @@
 	</modules>
 	
 	<properties>
-		<openMRSVersion>1.9.1</openMRSVersion>
+		<openMRSVersion>1.9.3</openMRSVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
@@ -39,6 +39,7 @@
 				<groupId>org.openmrs.module</groupId>
 				<artifactId>kenyaemr-api</artifactId>
 				<version>2013.2-SNAPSHOT</version>
+				<scope>provided</scope>
 			</dependency>
 
 			<dependency>

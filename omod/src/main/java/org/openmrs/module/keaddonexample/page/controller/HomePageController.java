@@ -15,7 +15,9 @@ package org.openmrs.module.keaddonexample.page.controller;
 
 import org.openmrs.Patient;
 import org.openmrs.module.appframework.AppUiUtil;
+import org.openmrs.module.kenyaemr.KenyaEmr;
 import org.openmrs.ui.framework.UiUtils;
+import org.openmrs.ui.framework.annotation.SpringBean;
 import org.openmrs.ui.framework.page.PageModel;
 import org.openmrs.ui.framework.session.Session;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,8 +27,14 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 public class HomePageController {
 	
-	public void controller(@RequestParam(required=false, value="patientId") Patient patient, Session session, PageModel model, UiUtils ui) {
+	public void controller(@RequestParam(required=false, value="patientId") Patient patient,
+						   Session session,
+						   PageModel model,
+						   UiUtils ui,
+						   @SpringBean KenyaEmr emr) {
 
 		AppUiUtil.startApp("keaddonexample.example", session);
+
+
 	}
 }
