@@ -1,7 +1,13 @@
 <%
 	ui.decorateWith("kenyaemr", "standardPage")
+
+	def simpleForms = forms.collect { kenyaEmrUi.simpleForm(it, ui) }
 %>
 
-This is an example page.
+${ ui.decorate("kenyaemr", "panel", [ heading: "Welcome" ], "This is an example page showing the example form added by this module") }
 
-The page controller has access to the Kenya EMR content using <code>@SpringBean KenyaEmr emr</code>.
+<% if (patient) { %>
+${ ui.decorate("kenyaemr", "panel", [ heading: "Example Forms" ], ui.includeFragment("kenyaemr", "formList", [ visit: null, forms: simpleForms ])) }
+<% } else { %>
+${ ui.decorate("kenyaemr", "panel", [ heading: "Example Forms" ], "Select a patient with another app to see a form list here") }
+<% } %>

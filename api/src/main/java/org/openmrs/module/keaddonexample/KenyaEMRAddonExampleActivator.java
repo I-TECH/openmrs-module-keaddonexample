@@ -71,10 +71,8 @@ public class KenyaEMRAddonExampleActivator implements ModuleActivator {
 			 * Registers an example form as a "once per visit" form which is available in the medical encounter and
 			 * medical chart apps.
 			 */
-			final String EXAMPLE_ADDON_FORM_UUID = "2a89533d-499f-453c-92c9-b38acb5446fd";
-
 			KenyaEmr.getInstance().getFormManager().registerForm(
-					EXAMPLE_ADDON_FORM_UUID,
+					ExampleConstants.EXAMPLE_ADDON_FORM_UUID,
 					FormConfig.Frequency.VISIT,
 					new String[] { "kenyaemr.medicalEncounter", "kenyaemr.medicalChart" }
 			);

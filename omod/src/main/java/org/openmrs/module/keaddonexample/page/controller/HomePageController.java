@@ -11,16 +11,21 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
+
 package org.openmrs.module.keaddonexample.page.controller;
 
 import org.openmrs.Patient;
 import org.openmrs.module.appframework.AppUiUtil;
+import org.openmrs.module.keaddonexample.ExampleConstants;
 import org.openmrs.module.kenyaemr.KenyaEmr;
+import org.openmrs.module.kenyaemr.form.FormConfig;
 import org.openmrs.ui.framework.UiUtils;
 import org.openmrs.ui.framework.annotation.SpringBean;
 import org.openmrs.ui.framework.page.PageModel;
 import org.openmrs.ui.framework.session.Session;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Collections;
 
 /**
  * Home page controller
@@ -35,6 +40,10 @@ public class HomePageController {
 
 		AppUiUtil.startApp("keaddonexample.example", session);
 
+		model.addAttribute("patient", patient);
 
+		FormConfig exampleForm = emr.getFormManager().getFormConfig(ExampleConstants.EXAMPLE_ADDON_FORM_UUID);
+
+		model.addAttribute("forms", Collections.singletonList(exampleForm));
 	}
 }
