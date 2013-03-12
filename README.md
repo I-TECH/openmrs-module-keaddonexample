@@ -78,11 +78,13 @@ Using the Kenya EMR UI
 ----------------------
 
 Example also uses the [uiframework module](https://wiki.openmrs.org/display/docs/UI+Framework) and can access any UI
-resource from the Kenya EMR module. To use UI resources from the Kenya EMR module, the add-on module just has to specify
+resource from the [Kenya EMR](https://github.com/I-TECH/openmrs-module-kenyaemr) module or [Kenya UI](https://github.com/I-TECH/openmrs-module-kenyaui) module. To use UI resources from the Kenya EMR module, the add-on module just has to specify
 the provider name, e.g.
 
 ```gsp
 <% ui.decorateWith("kenyaemr", "standardPage") %>
+
+<% ui.includeFragment("kenyaui", "widget/button", [ label: "Ok" ]) %>
 ```
 
 To access the KenyaEmrUiUtils class which contains useful methods for formatting objects, use the @SpringBean annotation
