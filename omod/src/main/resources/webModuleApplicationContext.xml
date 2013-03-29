@@ -18,5 +18,20 @@
 		<property name="homepageUrl" value="keaddonexample/home.page"/>
 		<property name="iconUrl" value="moduleResources/keaddonexample/images/apps/example.png"/>
 	</bean>
+
+	<!-- Forms -->
+
+	<bean class="org.openmrs.module.kenyaemr.form.FormDescriptor">
+		<property name="formUuid" value="7d09b28a-a11e-4358-b673-dfd6c2919659" />
+		<property name="frequency" value="VISIT" />
+		<property name="apps">
+			<set><value>kenyaemr.medicalEncounter</value><value>kenyaemr.medicalChart</value></set>
+		</property>
+		<property name="programUuid" value="dfdc6d40-2f2f-463d-ba90-cc97350441a8" />
+		<property name="iconProvider" value="keaddonexample" />
+		<property name="icon" value="forms/example.png" />
+		<property name="resourceProvider" value="keaddonexample" />
+		<property name="resource" value="htmlforms/example.xml" />
+	</bean>
 		
 </beans>

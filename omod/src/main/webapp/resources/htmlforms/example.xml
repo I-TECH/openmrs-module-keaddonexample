@@ -1,0 +1,27 @@
+<htmlform formName="Example Form" formVersion="0.1" formEncounterType="d69dedbd-3933-4e44-8292-bea939ce980a">
+	<fieldset>
+		<legend>Goats</legend>
+		<table>
+			<tr>
+				<td>Date:</td>
+				<td><encounterDate id="encounter-date" /></td>
+			</tr>
+			<tr>
+				<td>Location:</td>
+				<td><encounterLocation /></td>
+			</tr>
+			<tr>
+				<td>Provider:</td>
+				<td><encounterProvider /></td>
+			</tr>
+			<tr>
+				<td>Total number of goats:</td>
+				<td><obs conceptId="159683AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></td>
+			</tr>
+		</table>
+	</fieldset>
+
+	<div class="ke-form-buttons">
+		<submit />
+	</div>
+</htmlform>

@@ -19,7 +19,7 @@ import org.openmrs.module.appframework.AppUiUtil;
 import org.openmrs.module.keaddonexample.ExampleConstants;
 import org.openmrs.module.kenyaemr.KenyaEmr;
 import org.openmrs.module.kenyaemr.KenyaEmrUiUtils;
-import org.openmrs.module.kenyaemr.form.FormConfig;
+import org.openmrs.module.kenyaemr.form.FormDescriptor;
 import org.openmrs.ui.framework.UiUtils;
 import org.openmrs.ui.framework.annotation.SpringBean;
 import org.openmrs.ui.framework.page.PageModel;
@@ -44,7 +44,7 @@ public class HomePageController {
 
 		model.addAttribute("patient", patient);
 
-		FormConfig exampleForm = emr.getFormManager().getFormConfig(ExampleConstants.EXAMPLE_ADDON_FORM_UUID);
+		FormDescriptor exampleForm = emr.getFormManager().getFormConfig(ExampleConstants.EXAMPLE_ADDON_FORM_UUID);
 
 		model.addAttribute("forms", Collections.singletonList(kenyaUi.simpleForm(exampleForm, ui)));
 	}

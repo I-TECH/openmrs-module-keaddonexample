@@ -18,9 +18,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.module.ModuleActivator;
 import org.openmrs.module.kenyaemr.KenyaEmr;
-import org.openmrs.module.kenyaemr.MetadataManager;
-import org.openmrs.module.kenyaemr.form.FormConfig;
-import org.openmrs.module.kenyaemr.form.FormManager;
+import org.openmrs.module.kenyaemr.form.FormDescriptor;
 
 import java.io.InputStream;
 
@@ -66,16 +64,6 @@ public class KenyaEMRAddonExampleActivator implements ModuleActivator {
 			InputStream stream = getClass().getClassLoader().getResourceAsStream(PACKAGES_FILENAME);
 
 			KenyaEmr.getInstance().getMetadataManager().loadPackagesFromXML(stream, getClass().getClassLoader());
-
-			/**
-			 * Registers an example form as a "once per visit" form which is available in the medical encounter and
-			 * medical chart apps.
-			 */
-			KenyaEmr.getInstance().getFormManager().registerForm(
-					ExampleConstants.EXAMPLE_ADDON_FORM_UUID,
-					FormConfig.Frequency.VISIT,
-					new String[] { "kenyaemr.medicalEncounter", "kenyaemr.medicalChart" }
-			);
 		}
 		catch (Exception ex) {
 			throw new RuntimeException("Failed to setup initial data", ex);

@@ -19,5 +19,5 @@ package org.openmrs.module.keaddonexample;
  */
 public class ExampleConstants {
 
-	public static final String EXAMPLE_ADDON_FORM_UUID = "2a89533d-499f-453c-92c9-b38acb5446fd";
+	public static final String EXAMPLE_ADDON_FORM_UUID = "7d09b28a-a11e-4358-b673-dfd6c2919659";
 }
