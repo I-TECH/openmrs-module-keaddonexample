@@ -44,7 +44,7 @@ public class HomePageController {
 
 		model.addAttribute("patient", patient);
 
-		FormDescriptor exampleForm = emr.getFormManager().getFormConfig(ExampleConstants.EXAMPLE_ADDON_FORM_UUID);
+		FormDescriptor exampleForm = emr.getFormManager().getFormDescriptor(ExampleConstants.EXAMPLE_ADDON_FORM_UUID);
 
 		model.addAttribute("forms", Collections.singletonList(kenyaUi.simpleForm(exampleForm, ui)));
 	}
