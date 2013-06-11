@@ -2,5 +2,5 @@
 	Defines the metadata packages for this Kenya EMR addon
 -->
 <packages xmlns="http://www.kenyaemr.org/packages">
-	<package groupUuid="b3dd6a3c-ecae-45e9-86a8-17c1f2f38da9" filename="metadata/Example_Addon_Metadata-2.zip" />
+	<package groupUuid="d3a71388-f624-4d30-8342-b6ff50df95c4" filename="metadata/Example_Metadata-1.zip" />
 </packages>

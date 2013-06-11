@@ -11,12 +11,13 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-package org.openmrs.module.keaddonexample;
 
+package org.openmrs.module.keaddonexample;
 
 import org.apache.commons.logging.Log; 
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.module.ModuleActivator;
+import org.openmrs.module.ModuleException;
 import org.openmrs.module.kenyaemr.KenyaEmr;
 import org.openmrs.module.kenyaemr.form.FormDescriptor;
 
@@ -29,8 +30,6 @@ public class KenyaEMRAddonExampleActivator implements ModuleActivator {
 	
 	protected static final Log log = LogFactory.getLog(KenyaEMRAddonExampleActivator.class);
 
-	protected static final String PACKAGES_FILENAME = "packages.xml";
-		
 	/**
 	 * @see ModuleActivator#willRefreshContext()
 	 */
@@ -49,27 +48,14 @@ public class KenyaEMRAddonExampleActivator implements ModuleActivator {
 	 * @see ModuleActivator#willStart()
 	 */
 	public void willStart() {
-		log.warn("Starting Kenya EMR Add-on Example Module");
+		log.info("Starting Kenya EMR Add-on Example Module");
 	}
 	
 	/**
 	 * @see ModuleActivator#started()
 	 */
 	public void started() {
-		try {
-			/**
-			 * Loads a metadata package from this module into the Kenya EMR. This example package contains one
-			 * HTML form only.
-			 */
-			InputStream stream = getClass().getClassLoader().getResourceAsStream(PACKAGES_FILENAME);
-
-			KenyaEmr.getInstance().getMetadataManager().loadPackagesFromXML(stream, getClass().getClassLoader());
-		}
-		catch (Exception ex) {
-			throw new RuntimeException("Failed to setup initial data", ex);
-		}
-
-		log.warn("Kenya EMR Add-on Example Module started");
+		log.info("Kenya EMR Add-on Example Module started");
 	}
 	
 	/**
