@@ -16,7 +16,7 @@ To register an app, the module defines an app descriptor bean in its *webModuleA
   <property name="id" value="keaddonexample.example"/>
   <property name="label" value="Example"/>
   <property name="homepageUrl" value="keaddonexample/home.page"/>
-  <property name="iconUrl" value="moduleResources/keaddonexample/images/apps/example.png"/>
+  <property name="iconUrl" value="keaddonexample:images/apps/example.png"/>
 </bean>
 ```
 
