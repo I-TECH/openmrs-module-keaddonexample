@@ -27,6 +27,7 @@
 	
 	<properties>
 		<openMRSVersion>1.9.3</openMRSVersion>
+		<kenyaemrVersion>2013.2-SNAPSHOT</kenyaemrVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
