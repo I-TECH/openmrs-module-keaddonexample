@@ -10,7 +10,7 @@
 
 	<artifactId>keaddonexample-omod</artifactId>
 	<packaging>jar</packaging>
-	<name>Kenya EMR Add-on Example Module OMOD</name>
+	<name>KenyaEMR Add-on Example Module OMOD</name>
 	<description>OMOD project for KenyaEMR Add-on Example</description>
 
 	<dependencies>

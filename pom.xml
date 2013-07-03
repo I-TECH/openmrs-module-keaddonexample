@@ -6,8 +6,8 @@
 	<artifactId>keaddonexample</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>Kenya EMR Add-on Example Module</name>
-	<description>Example of adding a new app to Kenya EMR</description>
+	<name>KenyaEMR Add-on Example Module</name>
+	<description>Example of adding content to KenyaEMR</description>
 
 	<developers>
 		<developer>

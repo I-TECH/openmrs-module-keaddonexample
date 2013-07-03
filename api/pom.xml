@@ -10,7 +10,7 @@
 
 	<artifactId>keaddonexample-api</artifactId>
 	<packaging>jar</packaging>
-	<name>Kenya EMR Add-on Example Module API</name>
+	<name>KenyaEMR Add-on Example Module API</name>
 	<description>API project for KenyaEMR Add-on Example</description>
 
 	<dependencies>
