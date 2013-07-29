@@ -1,6 +1,0 @@
-<!--
-	Defines the metadata packages for this KenyaEMR add-on
--->
-<packages xmlns="http://www.kenyaemr.org/packages">
-	<package groupUuid="d3a71388-f624-4d30-8342-b6ff50df95c4" filename="metadata/Example_Metadata-1.zip" />
-</packages>
