@@ -1,27 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
-  		    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
-	<bean id="keaddonexample-metadata-config" class="org.openmrs.module.kenyaemr.metadata.MetadataConfiguration">
+	<bean id="keaddonexample.config.metadata" class="org.openmrs.module.kenyacore.metadata.MetadataConfiguration">
 		<property name="moduleId" value="keaddonexample" />
-		<property name="path" value="packages.xml" />
+		<property name="packages">
+			<util:map>
+				<entry key="d3a71388-f624-4d30-8342-b6ff50df95c4" value="metadata/Example_Metadata-1.zip" />
+			</util:map>
+		</property>
+	</bean>
+
+	<bean id="keaddonexample.config.form" class="org.openmrs.module.kenyacore.form.FormConfiguration">
+		<property name="generalVisitForms">
+			<util:list>
+				<ref bean="keaddonexample.form.example" />
+			</util:list>
+		</property>
+	</bean>
+
+	<!-- Apps -->
+
+	<bean id="keaddonexample.app.example" class="org.openmrs.module.appframework.SimpleAppDescriptor">
+		<property name="id" value="keaddonexample.example"/>
+		<property name="label" value="Example"/>
+		<property name="homepageUrl" value="keaddonexample/home.page"/>
+		<property name="iconUrl" value="keaddonexample:apps/example.png"/>
 	</bean>
 
 	<!-- Forms -->
 
-	<bean class="org.openmrs.module.kenyaemr.form.FormDescriptor">
-		<property name="formUuid" value="b694b1bc-2086-47dd-a4ad-ba48f9471e4b" />
-		<property name="frequency" value="VISIT" />
+	<bean id="keaddonexample.form.example" class="org.openmrs.module.kenyacore.form.FormDescriptor">
+		<property name="targetUuid" value="b694b1bc-2086-47dd-a4ad-ba48f9471e4b" />
 		<property name="apps">
-			<set><value>kenyaemr.medicalEncounter</value><value>kenyaemr.medicalChart</value></set>
+			<set>
+				<ref bean="kenyaemr.app.clinician" />
+				<ref bean="kenyaemr.app.chart" />
+			</set>
 		</property>
-		<property name="programUuid" value="dfdc6d40-2f2f-463d-ba90-cc97350441a8" />
-		<property name="iconProvider" value="keaddonexample" />
-		<property name="icon" value="forms/example.png" />
-		<property name="resourceProvider" value="keaddonexample" />
-		<property name="resource" value="htmlforms/example.xml" />
+		<property name="icon" value="keaddonexample:forms/example.png" />
+		<property name="htmlform" value="keaddonexample:example.xml" />
 	</bean>
 	
 </beans>

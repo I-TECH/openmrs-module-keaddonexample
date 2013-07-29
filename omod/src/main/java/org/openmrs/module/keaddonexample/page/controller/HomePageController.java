@@ -14,16 +14,13 @@
 
 package org.openmrs.module.keaddonexample.page.controller;
 
+import org.openmrs.Form;
 import org.openmrs.Patient;
-import org.openmrs.module.appframework.AppUiUtil;
 import org.openmrs.module.keaddonexample.ExampleConstants;
-import org.openmrs.module.kenyaemr.KenyaEmr;
-import org.openmrs.module.kenyaemr.KenyaEmrUiUtils;
-import org.openmrs.module.kenyaemr.form.FormDescriptor;
+import org.openmrs.module.kenyacore.metadata.MetadataUtils;
+import org.openmrs.module.kenyaui.annotation.AppPage;
 import org.openmrs.ui.framework.UiUtils;
-import org.openmrs.ui.framework.annotation.SpringBean;
 import org.openmrs.ui.framework.page.PageModel;
-import org.openmrs.ui.framework.session.Session;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collections;
@@ -31,21 +28,17 @@ import java.util.Collections;
 /**
  * Home page controller
  */
+@AppPage(ExampleConstants.APP_EXAMPLE)
 public class HomePageController {
 	
 	public void controller(@RequestParam(required=false, value="patientId") Patient patient,
-						   Session session,
 						   PageModel model,
-						   UiUtils ui,
-						   @SpringBean KenyaEmr emr,
-						   @SpringBean KenyaEmrUiUtils kenyaUi) {
-
-		AppUiUtil.startApp("keaddonexample.example", session);
+						   UiUtils ui) {
 
 		model.addAttribute("patient", patient);
 
-		FormDescriptor exampleForm = emr.getFormManager().getFormDescriptor(ExampleConstants.EXAMPLE_ADDON_FORM_UUID);
+		Form exampleForm = MetadataUtils.getForm(ExampleConstants.EXAMPLE_ADDON_FORM_UUID);
 
-		model.addAttribute("forms", Collections.singletonList(kenyaUi.simpleForm(exampleForm, ui)));
+		model.addAttribute("forms", Collections.singletonList(ui.simplifyObject(exampleForm)));
 	}
 }

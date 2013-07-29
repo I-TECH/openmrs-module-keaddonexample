@@ -9,14 +9,5 @@
 	<bean class="org.openmrs.ui.framework.StandardModuleUiConfiguration">
 		<property name="moduleId" value="keaddonexample"/>
 	</bean>
-
-	<!-- App Framework setup -->
-
-	<bean id="kenyaEmrExampleAddonApp" class="org.openmrs.module.appframework.SimpleAppDescriptor">
-		<property name="id" value="keaddonexample.example"/>
-		<property name="label" value="Example"/>
-		<property name="homepageUrl" value="keaddonexample/home.page"/>
-		<property name="iconUrl" value="keaddonexample:images/apps/example.png"/>
-	</bean>
 		
 </beans>
