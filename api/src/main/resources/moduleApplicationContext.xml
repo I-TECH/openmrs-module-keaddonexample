@@ -1,24 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xmlns:util="http://www.springframework.org/schema/util"
-	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-	   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
 	<bean id="keaddonexample.config.metadata" class="org.openmrs.module.kenyacore.metadata.MetadataConfiguration">
 		<property name="moduleId" value="keaddonexample" />
 		<property name="packages">
-			<util:map>
+			<map>
 				<entry key="d3a71388-f624-4d30-8342-b6ff50df95c4" value="metadata/Example_Metadata-1.zip" />
-			</util:map>
-		</property>
-	</bean>
-
-	<bean id="keaddonexample.config.form" class="org.openmrs.module.kenyacore.form.FormConfiguration">
-		<property name="generalVisitForms">
-			<util:list>
-				<ref bean="keaddonexample.form.example" />
-			</util:list>
+			</map>
 		</property>
 	</bean>
 
@@ -43,6 +33,26 @@
 		</property>
 		<property name="icon" value="keaddonexample:forms/example.png" />
 		<property name="htmlform" value="keaddonexample:example.xml" />
+	</bean>
+
+	<!-- To add form to the general visit form list -->
+
+	<!--<bean id="keaddonexample.config.form" class="org.openmrs.module.kenyacore.form.FormConfiguration">
+		<property name="generalVisitForms">
+			<list>
+				<ref bean="keaddonexample.form.example" />
+			</list>
+		</property>
+	</bean>-->
+
+	<!-- To add form to the HIV program visit form list -->
+
+	<bean parent="kenyaemr.program.hiv">
+		<property name="visitForms">
+			<list merge="true">
+				<ref local="keaddonexample.form.example" />
+			</list>
+		</property>
 	</bean>
 	
 </beans>
