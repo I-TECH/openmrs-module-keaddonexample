@@ -38,12 +38,12 @@
 	<bean id="keaddonexample.config.form" class="org.openmrs.module.kenyacore.form.FormConfiguration">
 		<!-- To add form to the general visit form list -->
 		<property name="generalVisitForms">
-			<list>
+			<set>
 				<ref bean="keaddonexample.form.example" />
-			</list>
+			</set>
 		</property>
 		<!-- To add form to the HIV program visit form list -->
-		<property name="additionalProgramForms">
+		<property name="programVisitForms">
 			<map>
 				<entry key-ref="kenyaemr.program.hiv">
 					<set><ref bean="keaddonexample.form.example" /></set>
