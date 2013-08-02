@@ -17,7 +17,7 @@
 	<bean id="keaddonexample.app.example" class="org.openmrs.module.appframework.SimpleAppDescriptor">
 		<property name="id" value="keaddonexample.example"/>
 		<property name="label" value="Example"/>
-		<property name="homepageUrl" value="keaddonexample/home.page"/>
+		<property name="homepageUrl" value="keaddonexample/example/home.page"/>
 		<property name="iconUrl" value="keaddonexample:apps/example.png"/>
 	</bean>
 

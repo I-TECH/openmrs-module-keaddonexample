@@ -12,18 +12,14 @@
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
 
-package org.openmrs.module.keaddonexample.page.controller;
+package org.openmrs.module.keaddonexample.page.controller.example;
 
-import org.openmrs.Form;
 import org.openmrs.Patient;
 import org.openmrs.module.keaddonexample.ExampleConstants;
-import org.openmrs.module.kenyacore.metadata.MetadataUtils;
 import org.openmrs.module.kenyaui.annotation.AppPage;
 import org.openmrs.ui.framework.UiUtils;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.Collections;
 
 /**
  * Home page controller
@@ -36,9 +32,5 @@ public class HomePageController {
 						   UiUtils ui) {
 
 		model.addAttribute("patient", patient);
-
-		Form exampleForm = MetadataUtils.getForm(ExampleConstants.EXAMPLE_ADDON_FORM_UUID);
-
-		model.addAttribute("forms", Collections.singletonList(ui.simplifyObject(exampleForm)));
 	}
 }
