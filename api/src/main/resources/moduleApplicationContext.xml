@@ -43,13 +43,13 @@
 			</set>
 		</property>
 		<!-- To add form to the HIV program visit form list -->
-		<property name="programVisitForms">
+		<!--<property name="programVisitForms">
 			<map>
 				<entry key-ref="kenyaemr.program.hiv">
 					<set><ref bean="keaddonexample.form.example" /></set>
 				</entry>
 			</map>
-		</property>
+		</property>-->
 	</bean>
 	
 </beans>
