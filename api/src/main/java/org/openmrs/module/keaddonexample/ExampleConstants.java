@@ -22,4 +22,9 @@ public class ExampleConstants {
 	public static final String APP_EXAMPLE = "keaddonexample.example";
 
 	public static final String EXAMPLE_ADDON_FORM_UUID = "b694b1bc-2086-47dd-a4ad-ba48f9471e4b";
+
+    public static final String ADHERENCE_FORM_UUID = "07197743-026a-4c7c-af60-42c166bf4acd";
+
+    //Encounter Type uuid
+    public static final String ADHERENCE_TYPE_UUID = "b586c79d-ab57-102d-be97-85aedb3d9f67";
 }

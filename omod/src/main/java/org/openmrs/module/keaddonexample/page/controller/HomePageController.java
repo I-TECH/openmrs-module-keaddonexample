@@ -19,11 +19,13 @@ import org.openmrs.Patient;
 import org.openmrs.module.keaddonexample.ExampleConstants;
 import org.openmrs.module.kenyacore.metadata.MetadataUtils;
 import org.openmrs.module.kenyaui.annotation.AppPage;
+import org.openmrs.ui.framework.SimpleObject;
 import org.openmrs.ui.framework.UiUtils;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Home page controller
@@ -38,7 +40,26 @@ public class HomePageController {
 		model.addAttribute("patient", patient);
 
 		Form exampleForm = MetadataUtils.getForm(ExampleConstants.EXAMPLE_ADDON_FORM_UUID);
+        Form adherenceForm = MetadataUtils.getForm(ExampleConstants.ADHERENCE_FORM_UUID);
 
-		model.addAttribute("forms", Collections.singletonList(ui.simplifyObject(exampleForm)));
+		//model.addAttribute("forms", Collections.singletonList(ui.simplifyObject(exampleForm)));
+
+
+
+        List<SimpleObject> forms = new ArrayList<SimpleObject>();
+        forms.add(ui.simplifyObject(exampleForm));
+        forms.add(ui.simplifyObject(adherenceForm));
+
+        //List<SimpleObject> oneTimeForms = new ArrayList<SimpleObject>();
+
+        //List<FormDescriptor> oneTimeFormDescriptors = emr.getFormManager().getFormsForPatient(thisApp, patient);
+
+        //for (FormDescriptor formDescriptor : oneTimeFormDescriptors) {
+        //    Form form = formDescriptor.getTarget();
+        //    oneTimeForms.add(ui.simplifyObject(form));
+       // }
+        //model.addAttribute("oneTimeForms", oneTimeForms);
+        model.addAttribute("forms", forms);
+
 	}
 }

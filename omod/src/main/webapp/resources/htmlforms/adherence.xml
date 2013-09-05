@@ -1,0 +1,133 @@
+<htmlform>
+    <style type="text/css">
+        table.adhFm {
+        border-collapse: collapse;
+        //background-color: #F3F9FF;
+        }
+        table.adhFm > tbody > tr > td, table.adhFm > tbody > tr > th {
+        border: 1px solid black;
+        vertical-align: baseline;
+        padding: 4px;
+        text-align: left;
+        }
+    </style>
+    <fieldset>
+        <legend align="center">Adherence Form</legend>
+        <div class="encounter-details">
+                    <table>
+                        <tr>
+                            <td>Date:</td>
+                            <td><encounterDate id="encounter-date" default="now" showTime="true" /></td>
+                        </tr>
+                        <tr>
+                            <td>Site:</td>
+                            <td><encounterLocation default="GlobalProperty:kenyaemr.defaultLocation" type="autocomplete"/></td>
+                        </tr>
+                    </table>
+        </div>
+         <table class="adhFm">
+             <tbody>
+                     <tr>
+                         <td>Phone number:<obs conceptId="5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></td>
+                         <td>Alternate Phone Number: {TBD-CIEL}</td>
+                      </tr>
+                 <tr>
+                     <td colspan="2">What work do you do now to meet daily needs? (purpose: to determine if currently earning income or not)</td>
+                 </tr>
+                 <tr>
+                     <td>[TBD-CIEL]-Current Work(Specify)</td>
+                     <td>[TBD-CIEL]-Not Working Now</td>
+                 </tr>
+
+             </tbody>
+         </table>
+        <fieldset>
+            <legend>Medications</legend>
+            <table class="adhFm">
+                <tr>
+                    <td>Arv Regimen:<obs conceptId="966AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/></td>
+                    <td>Anti TB Medication:</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Other Medications</td>
+                </tr>
+            </table>
+
+        </fieldset>
+        <fieldset>
+            <legend>Adherence Buddy</legend>
+            <table>
+                <tr>
+                    <td colspan="2">Do you currently have adherence buddy</td>
+
+                </tr>
+                <tr>
+                    <td>Buddy's Fullname:<obs conceptId="160638AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/> </td>
+                    <td>Buddy's Relationship:<obs conceptId="160640AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/> </td>
+                </tr>
+                <tr>
+                    <td>Buddy's Phone Number:<obs conceptId="160642AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/> </td>
+                    <td>or:</td>
+                </tr>
+            </table>
+
+        </fieldset>
+        <fieldset>
+            <legend>Adherence Dates</legend>
+            <table class="adhFM">
+                <tr>
+                    <th>Adherence Counselling Dates (dd/mm/yyy)</th>
+                    <th>Time Preferred for Taking Pills</th>
+                </tr>
+                <tr>
+                    <td>
+                    1st Session:   <br/>
+                    2nd Session:   <br/>
+                    3rd Session:   <br/>
+                    Booster Session:   <br/>
+                    </td>
+                    <td>AM:---- PM----<br/>
+                          Reminders of Time<br/>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>Buddy's Phone Number:</td>
+                    <td>or:</td>
+                </tr>
+            </table>
+
+        </fieldset>
+        <fieldset>
+            <legend>Disclosure</legend>
+            <table>
+                <tr>
+                    <td>Have you disclosed your HIV Status to any of the following?</td>
+                </tr>
+
+            </table>
+        </fieldset>
+	<fieldset>
+		<legend>Observation Infor</legend>
+			<table>
+				<tr>
+					<td>Weight:</td>
+					<td><obs conceptId="5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></td>
+				</tr>
+				<tr>
+					<td>Height:</td>
+					<td><obs conceptId="5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" /></td>
+				</tr>
+			</table>
+	</fieldset>
+    </fieldset>
+    <table>
+        <tr>
+            <td>Form Filled by:</td>
+            <td><encounterProvider /></td>
+        </tr>
+    </table>
+	<div class="ke-form-buttons">
+		<submit />
+	</div>
+</htmlform>
