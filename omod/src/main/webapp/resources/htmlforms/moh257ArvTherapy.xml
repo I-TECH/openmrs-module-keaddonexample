@@ -1,0 +1,743 @@
+<!--
+  ~ The contents of this file are subject to the OpenMRS Public License
+  ~ Version 1.0 (the "License"); you may not use this file except in
+  ~ compliance with the License. You may obtain a copy of the License at
+  ~ http://license.openmrs.org
+  ~
+  ~ Software distributed under the License is distributed on an "AS IS"
+  ~ basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
+  ~ License for the specific language governing rights and limitations
+  ~ under the License.
+  ~
+  ~ Copyright (C) OpenMRS, LLC.  All Rights Reserved.
+-->
+<htmlform>
+
+    <style type="text/css">
+        table.moh257 {
+        border-collapse: collapse;
+        background-color: #F3F9FF;
+        }
+        table.moh257 > tbody > tr > td, table.moh257 > tbody > tr > th {
+        border: 1px solid black;
+        vertical-align: baseline;
+        padding: 4px;
+        text-align: left;
+        }
+    </style>
+    <script type="text/javascript">
+        var YES_CONCEPT_ID = 1065;
+        var NO_CONCEPT_ID = 1066;
+        var ADULT =15;
+        var TRANSFER_IN_CONCEPT_ID = 1605;
+        var MC_CONCEPT_ID = 6765;
+        var AB_CONCEPT_ID = 50;
+        var WFP_CONCEPT_ID = 6797;
+        var GOOD_CONCEPT_ID = 1384;
+        var NA_CONCEPT_ID = 1175;
+
+        function validateValues()
+        {
+        /* this function validates:
+        * Cd4 count
+        * cd4 Percent
+        * Height at start of HAART
+        * Weight at Start of HAART
+        */
+        var age = <lookup expression="patient.age"/>   ;
+        var cd4_count = parseFloat(getValue('cd4_count.value'));
+        var cd4_percent = parseFloat(getValue('cd4_percent.value'));
+        var H = parseFloat(getValue('artHeight.value'));
+        var W = parseFloat(getValue('artWeight.value'));
+
+        /* validate cd count */
+        if(!isNaN(cd4_count) &amp;&amp; !isNaN(age))
+        {
+        if (age &lt; ADULT)
+        {
+        /*validate cd4 count for children */
+        if (cd4_count &lt; 0 || cd4_count &gt; 20000 )
+        {
+        getField('cd4_count.error').html('Should be between 0-20000').show();
+        }
+        else
+        {
+        getField('cd4_count.error').hide();
+        }
+        }
+        else
+        {
+        /*validate cd4 count for adults */
+        if (cd4_count &lt; 0 || cd4_count &gt; 3500 )
+        {
+        getField('cd4_count.error').html('Should be between 0-3500').show();
+        }
+        else
+        {
+        getField('cd4_count.error').hide();
+        }
+
+        }
+        }
+        /* validate cd4 percent */
+        if(!isNaN(cd4_percent) &amp;&amp; !isNaN(age))
+        {
+        if (age &lt; ADULT)
+        {
+        /*validate cd4 percent */
+        if (cd4_percent &lt; 0.0 || cd4_percent &gt; 55.0 )
+        {
+        getField('cd4_percent.error').html('Should be between 0.0-55.0').show();
+        }
+        else
+        {
+        getField('cd4_percent.error').hide();
+        }
+        }
+        else
+        {
+        setValue('cd4_percent.value',null);
+        }
+        }
+        /* Validate Height*/
+        if(!isNaN(H) &amp;&amp; !isNaN(age))
+        {
+        if (age &lt; ADULT)
+        {
+        /*validate children Height */
+        if (H &lt; 40 || H &gt; 200 )
+        {
+        getField('artHeight.error').html('Should be between 40-200').show();
+        }
+        else
+        {
+        getField('artHeight.error').hide();
+        }
+        }
+        else
+        {
+        /*validate Adult Height */
+        if (H &lt; 90 || H &gt; 210 )
+        {
+        getField('artHeight.error').html('Should be between 90-210').show();
+        }
+        else
+        {
+        getField('artHeight.error').hide();
+        }
+        }
+
+        }
+        /* validate weight */
+        if(!isNaN(W) &amp;&amp; !isNaN(age))
+        {
+        if (age &lt; ADULT)
+        {
+        /*validate children weight */
+        if (W &lt; 2 || W &gt; 100 )
+        {
+        getField('artWeight.error').html('Should be between 2-100').show();
+        }
+        else
+        {
+        getField('artWeight.error').hide();
+        }
+        }
+        else
+        {
+        /*validate Adult Weight */
+        if (W &lt; 25 || W &gt; 150 )
+        {
+        getField('artWeight.error').html('Should be between 25-150').show();
+        }
+        else
+        {
+        getField('artWeight.error').hide();
+        }
+        }
+        }
+        }
+
+
+
+
+
+
+        /* Validate Date Eligible for HAART */
+        function validateEligibilityDate()
+        {
+        var today=new Date();
+        var enrollDate=new Date(getValue('date_Enrolled.value')).getTime();
+        var birthDate= new Date("<lookup expression="patient.birthdate"/>").getTime();
+        var confirmedPDate=new Date(getValue('date_confirmed_pos.value')).getTime();
+        var eligibleDate= new Date(getValue('date_Eligible.value')).getTime();
+        if(eligibleDate &lt; confirmedPDate)
+        {
+        getField('date_Eligible.error').html('Should not be less than the date Confirmed HIV+').show();
+        }
+        else if(eligibleDate &gt; today)
+        {
+        getField('date_Eligible.error').html('Should not be greater than the current date').show();
+        }
+        else if(eligibleDate &lt; birthDate)
+        {
+        getField('date_Eligible.error').html('Should not be Less than the date of Birth').show();
+        }
+        else
+        {
+        getField('date_Eligible.error').hide();
+        }
+        }
+
+
+
+
+        /* Validate Encounter Date */
+        function validateEncounterDate()
+        {
+        var enc_date=new Date(getValue('encounter_date.value')).getTime();
+        var birthDate= new Date("<lookup expression="patient.birthdate"/>").getTime();
+        var today=new Date();        //get current date
+
+        /*this data should not be in Future */
+        if(enc_date &gt; today)
+        {
+        getField('encounter_date.error').html('Should not be greater than the Current date').show();
+        }
+        else if(enc_date &lt; birthDate)
+        {
+        /* Encounter Date should be greater than the Patients's date of Birth    */
+        getField('encounter_date.error').html('Should not be less than the date of Birth').show();
+        }
+        else
+        {
+        getField('encounter_date.error').hide();
+        calcHaartDuration();
+        }
+
+        }
+
+        /* Validate Date Started on HAART */
+        function validateStartDate()
+        {
+        var start_date=new Date(getValue('date_started_haart.value')).getTime();
+        var birthDate= new Date("<lookup expression="patient.birthdate"/>").getTime();
+        var today=new Date();        //get current date
+        var display='';
+
+        /*this data should not be in Future */
+        if(start_date &gt; today)
+        {
+        getField('date_started_haart.error').html('Should not be greater than the Current date').show();
+        }
+        else if(start_date &lt; birthDate)
+        {
+        /* Date should be greater than the Patients's date of Birth    */
+        getField('date_started_haart.error').html('Should not be less than the date of Birth').show();
+        }
+        else
+        {
+        getField('date_started_haart.error').hide();
+        var t=new Date (start_date).toString();
+        display =t.substring(4,7)+' '+ new Date (start_date).getFullYear() ;
+        $j('#cohort').html(display);
+        }
+
+        }
+        /* Validate Date HAART Dates */
+        function validateDates()
+        {
+        //var start_date=new Date(getValue('date_started_haart.value')).getTime();
+        var sub_fl_date=new Date(getValue('sub_fl_date.value')).getTime();
+        var switch_date=new Date(getValue('switch_date.value')).getTime();
+        var sub_sl_date=new Date(getValue('sub_sl_date.value')).getTime();
+        var to_date=new Date(getValue('to_date.value')).getTime();//transfer out date
+        var date_died=new Date(getValue('date_died.value')).getTime();
+        var interruption_date=new Date(getValue('interruption_date.value')).getTime();
+        var date_restarted=new Date(getValue('date_restarted.value')).getTime();
+        var birthDate= new Date("<lookup expression="patient.birthdate"/>").getTime();
+        var today=new Date();        //get current date
+
+        /*Validate date of substitution within first line reg*/
+        if (sub_fl_date != "undefined")
+        {
+        if(sub_fl_date &gt; today)
+        {
+        getField('sub_fl_date.error').html('Should not be greater than the Current date').show();
+        }
+        else if(sub_fl_date &lt; birthDate)
+        {
+        /* Date should be greater than the Patients's date of Birth    */
+        getField('sub_fl_date.error').html('Should not be less than the date of Birth').show();
+        }
+        else
+        {
+        getField('sub_fl_date.error').hide();
+        }
+
+        }
+
+        /*Validate date of switch to second line reg*/
+        if (switch_date != "undefined")
+        {
+        if(switch_date &gt; today)
+        {
+        getField('switch_date.error').html('Should not be greater than the Current date').show();
+        }
+        else if(switch_date &lt; birthDate)
+        {
+        /* Date should be greater than the Patients's date of Birth    */
+        getField('switch_date.error').html('Should not be less than the date of Birth').show();
+        }
+        else
+        {
+        getField('switch_date.error').hide();
+        }
+        }
+
+        /*Validate date of substitution within second line reg*/
+        if (sub_sl_date != "undefined")
+        {
+        if(sub_sl_date &gt; today)
+        {
+        getField('sub_sl_date.error').html('Should not be greater than the Current date').show();
+        }
+        else if(sub_sl_date &lt; birthDate)
+        {
+        /* Date should be greater than the Patients's date of Birth    */
+        getField('sub_sl_date.error').html('Should not be less than the date of Birth').show();
+        }
+        else
+        {
+        getField('sub_sl_date.error').hide();
+        }
+        }
+        /*Validate date of Transfer out to another facility*/
+        if (to_date != "undefined")
+        {
+        if(to_date &gt; today)
+        {
+        getField('to_date.error').html('Should not be greater than the Current date').show();
+        }
+        else if(to_date &lt; birthDate)
+        {
+        /* Date should be greater than the Patients's date of Birth    */
+        getField('to_date.error').html('Should not be less than the date of Birth').show();
+        }
+        else
+        {
+        getField('to_date.error').hide();
+        }
+        }
+        /*Validate date The patient died*/
+        if (date_died != "undefined")
+        {
+        if(date_died &gt; today)
+        {
+        getField('date_died.error').html('Should not be greater than the Current date').show();
+        }
+        else if(date_died &lt; birthDate)
+        {
+        /* Date should be greater than the Patients's date of Birth    */
+        getField('date_died.error').html('Should not be less than the date of Birth').show();
+        }
+        else
+        {
+        getField('date_died.error').hide();
+        }
+        }
+        /*Validate ART Interruption Date*/
+        if (interruption_date != "undefined")
+        {
+        if(interruption_date &gt; today)
+        {
+        getField('interruption_date.error').html('Should not be greater than the Current date').show();
+        }
+        else if(interruption_date &lt; birthDate)
+        {
+        /* Date should be greater than the Patients's date of Birth    */
+        getField('interruption_date.error').html('Should not be less than the date of Birth').show();
+        }
+        else
+        {
+        getField('interruption_date.error').hide();
+        }
+        }
+        /*Validate Date Restarted on ART after Interruption*/
+        if (date_restarted != "undefined")
+        {
+        if(date_restarted &gt; today)
+        {
+        getField('date_restarted.error').html('Should not be greater than the Current date').show();
+        }
+        else if(date_restarted &lt; birthDate)
+        {
+        /* Date should be greater than the Patients's date of Birth    */
+        getField('date_restarted.error').html('Should not be less than the date of Birth').show();
+        }
+        else
+        {
+        getField('date_restarted.error').hide();
+        }
+        }
+
+        }
+
+
+
+
+
+
+        function onARVSChangeStatus()
+        {
+        if(getValue('onARVS.value')== YES_CONCEPT_ID)
+        {
+        $j('#art-History').show();
+        }
+        else
+        {
+        $j('#art-History').hide();
+        }
+        }
+
+
+
+
+        /*Calculate BMI at start of HAART*/
+        function calculateStartARTBMI() {
+        var display = '';
+        var age = <lookup expression="patient.age"/>   ;
+        var heightM = parseFloat(getValue('artHeight.value'))  / 100;
+        var weightKg = parseFloat(getValue('artWeight.value'));
+        if (!isNaN(age)&amp;&amp; age &gt;= ADULT)
+        {
+        if (!isNaN(weightKg) &amp;&amp;(!isNaN(heightM)))
+        {
+        var bmi = weightKg / (heightM * heightM);
+        display = bmi;
+        if (isNaN(bmi) || bmi &lt; 10 || bmi &gt; 50) {
+        display = 'Abnormal value. Where height and height entered correctly?';
+        }
+        else {
+        display ='BMI:' + bmi.toFixed(2) + '(Adults)';
+        }
+        }
+        $j('#artBMI').html(display);
+        }
+        }
+
+        $j(function(){
+        /* Form Skipping Pattern based on the selected value*/
+
+        $j('#onARVS input').click(onARVSChangeStatus);
+
+
+        /*validate Fields */
+        getField('artHeight.value').change(calculateStartARTBMI);
+        getField('artWeight.value').change(calculateStartARTBMI);
+        getField('artHeight.value').change(validateValues);
+        getField('artWeight.value').change(validateValues);
+        getField('cd4_count.value').change(validateValues);
+        getField('cd4_percent.value').change(validateValues);
+
+
+        getField('date_Eligible.value').change(validateEligibilityDate);
+        getField('encounter_date.value').change(validateEncounterDate);
+        getField('date_started_haart.value').change(validateStartDate);
+        getField('date_restarted.value').change(validateDates);
+        getField('interruption_date.value').change(validateDates);
+        getField('date_died.value').change(validateDates);
+        getField('sub_sl_date.value').change(validateDates);
+        getField('sub_fl_date.value').change(validateDates);
+        getField('switch_date.value').change(validateDates);
+
+
+        onEntryPointChange();
+        onARVSChangeStatus();
+        validateValues();
+        validateDates();
+        validateEligibilityDate()
+        validateDateEnrolled();
+        validateEncounterDate();
+        calculateStartARTBMI();
+        });
+
+        beforeSubmit.push(function() {
+        /* validate fields before the form is submitted */
+        var val = getValue('weight.value');
+        if (val == null || val == '') {
+        getField('weight.error').html('Required for all patients').show();
+        return false;
+        }
+        /*TODO- validate all required fields*/
+
+        /* Validate Encounter Date */
+        /*this data should not be in Future */
+        if(enc_date &gt; today)
+        {
+        getField('encounter_date.error').html('Should not be greater than the Current date').show();
+        return false;
+        }
+
+        /* Encounter Date should be greater than the Patients's date of Birth    */
+        if(enc_date &lt; birthDate)
+        {
+        getField('encounter_date.error').html('Should not be less than the date of Birth').show();
+        return false;
+        }
+
+
+
+
+
+        return true;
+        });
+    </script>
+
+    <table class="moh257" align="center">
+        <tbody>
+            <tr>
+                <td>
+                    Facility Name (Site)<encounterLocation id="site" type="autocomplete"/>
+                    Provider (Site)<encounterProvider id="site" type="autocomplete"/>
+                    Patient Clinic Number:<lookup class="value" complexExpression="#foreach( $patId in $patientIdentifiers.get('Faces ID') ) $patId #end "/>
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color: #696969; color: #ffffff;">
+                    ARV THERAPY
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td colspan="3">Date Medically Eligible <!--  <obs id="date_Eligible" conceptId="6319"/>--></td>
+                        </tr>
+                        <tr>
+                            <td>Eligible Thru.?
+                                <!--
+                                <obs conceptId="6796" answerConceptId="6795" answerLabel="WHO Stage" style="checkbox"/>
+                                <obs conceptId="6795" answerConceptIds="6790,6791,6792,6793" answerLabels="I,II,III,IV"/>
+                                -->
+
+                            </td>
+                            <td>
+                                <!--
+                                <obs conceptId="6796" answerConceptId="6314" answerLabel="CD4 Count" style="checkbox"/>
+                                <obs id="cd4_count" conceptId="6314" size="3"/>
+                                -->
+                            </td>
+                            <td>
+                                <!--
+                                <obs conceptId="6796" answerConceptId="6313" answerLabel="CD4%" style="checkbox"/>
+                                <obs id="cd4_percent" conceptId="6313" size="3"/>
+                                <obs conceptId="6796" answerConceptId="6824" answerLabel="PCR" style="checkbox"/>
+                                <obs conceptId="6824" answerConceptIds="664,703" answerLabels="Neg,Pos"/>
+                                <obs conceptId="6796" answerConceptId="1359" answerLabel="Research" style="checkbox"/>
+                                <obs conceptId="6796" answerConceptId="7105" answerLabel="Option B+" style="checkbox"/>
+                                -->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Date Started on 1st Line:<br/><!-- <obs id="date_started_haart" conceptId="6746"/> --></td>
+                            <td>COHORT: <span id="cohort"></span></td>
+                            <td>Regimen:<!-- <obs conceptId="6747"/> --></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><br/>At Start of ART:</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                Weight(kgs):<!-- <obs id="artWeight" conceptId="6743"/> -->
+                                Height(cms):<!-- <obs id="artHeight" conceptId="6744"/> -->
+                                <span id="artBMI"> </span>
+                                WHO Stage <!--  <obs conceptId="6745"/> -->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><br/>Substitution of ARVs within 1st Line Regimen</td>
+                        </tr>
+                        <tr>
+                            <td>Dates</td>
+                            <td>Regimen</td>
+                            <td>Reason(s)</td>
+                        </tr>
+                        <!--
+                        <repeat>
+                            <template>
+                                <obsgroup groupingConceptId="6773">
+                                -->
+                                    <tr>
+
+
+                                        <td style="vertical-align:top;">    </td> <!-- <obs id="sub_fl_date" conceptId="6748" /> Dates -->
+                                        <td style="vertical-align:top;"></td>     <!-- <obs conceptId="6749" /> Regimen -->
+                                        <td>      <!-- Reasons -->
+                                            <!--
+                                            <div style="float: left; padding-right: 20px">
+                                                <obs conceptId="6771" answerConceptId="1413" answerLabel="1-Toxicity" style="checkbox"/> <br/>
+                                                <obs conceptId="6771" answerConceptId="44" answerLabel="2-Pregnancy" style="checkbox"/><br/>
+                                                <obs conceptId="6771" answerConceptId="6189" answerLabel="3-Risk of Pregnancy" style="checkbox"/>  <br/>
+                                                <obs conceptId="6771" answerConceptId="6187" answerLabel="4-New TB" style="checkbox"/>
+
+                                            </div>
+                                            <div style="float: left">
+                                                <obs conceptId="6771" answerConceptId="6186" answerLabel="5-New Drug" style="checkbox"/> <br/>
+                                                <obs conceptId="6771" answerConceptId="1417" answerLabel="6-Drug out of Stock" style="checkbox"/><br/>
+                                                <obs conceptId="6771" answerConceptId="5622" answerLabel="7-Other Reasons" style="checkbox"/>
+                                            </div>
+                                            -->
+                                        </td>
+
+
+                                   </tr>
+        <!--
+                           </obsgroup>
+                       </template>
+                       <render n="1" concept=" " />
+                       <render n="2" concept=" " />
+                   </repeat>
+                   -->
+                        <tr>
+                            <td colspan="3"><br/>Switch to 2nd Line Regimen</td>
+                        </tr>
+                        <tr>
+                            <td> Dates</td>
+                            <td>Regimen</td>
+                            <td>Reason(s)</td>
+                        </tr>
+                        <tr>
+
+                            <td style="vertical-align:top;"></td>     <!-- <obs id="switch_date" conceptId="6751" /> Dates -->
+                            <td style="vertical-align:top;"></td>     <!-- <obs conceptId="6782" />Regimen -->
+                            <td>      <!-- Reasons -->
+                                <!--
+                                <obs conceptId="6192" answerConceptId="843" answerLabel="8-Treatment failure" style="checkbox"/>
+                                <obs conceptId="6192" answerConceptId="6190" answerLabel="9-Immunologic failure" style="checkbox"/><br/>
+                                <obs conceptId="6192" answerConceptId="6191" answerLabel="10-Virologic failure" style="checkbox"/>
+                                -->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><br/>Substitution of ARVs within 2nd Line Regimen</td>
+                        </tr>
+                        <tr>
+                            <td>Dates</td>
+                            <td>Regimen</td>
+                            <td>Reason(s)</td>
+                        </tr>
+                        <!--
+                        <repeat>
+                            <template>
+                                <obsgroup groupingConceptId="6774">
+                                -->
+                                    <tr>
+
+                                        <td style="vertical-align:top;"><!-- <obs id="sub_sl_date" conceptId="6770" /> --></td>     <!-- Dates -->
+                                        <td style="vertical-align:top;"><!-- <obs conceptId="6750" /> --></td>     <!-- Regimen -->
+                                        <td>      <!-- Reasons -->
+                                            <!--
+                                            <div style="float: left; padding-right: 20px">
+                                                <obs conceptId="6772" answerConceptId="1413" answerLabel="1-Toxicity" style="checkbox"/>  <br/>
+                                                <obs conceptId="6772" answerConceptId="44" answerLabel="2-Pregnancy" style="checkbox"/><br/>
+                                                <obs conceptId="6772" answerConceptId="6189" answerLabel="3-Risk of Pregnancy" style="checkbox"/> <br/>
+                                                <obs conceptId="6772" answerConceptId="6187" answerLabel="4-New TB" style="checkbox"/>
+                                            </div>
+                                            <div style="float: left">
+                                                <obs conceptId="6772" answerConceptId="6186" answerLabel="5-New Drug" style="checkbox"/><br/>
+                                                <obs conceptId="6772" answerConceptId="1417" answerLabel="6-Drug out of Stock" style="checkbox"/><br/>
+                                                <obs conceptId="6772" answerConceptId="5622" answerLabel="7-Other Reasons" style="checkbox"/>
+
+                                            </div>
+                                            -->
+                                        </td>
+                                    </tr>
+                                            <!--
+                                </obsgroup>
+                            </template>
+                            <render n="1" concept=" " />
+                            <render n="2" concept=" " />
+                        </repeat>
+                        -->
+
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td style="font-weight:bold;">Transfer Out and Death</td>
+            </tr>
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td>Dates</td>
+                            <td>Event</td>
+                            <td>Where?</td>
+                        </tr>
+                        <tr>
+                            <td><!-- <obs id="to_date" conceptId="1672"/> --></td>
+                            <td>Patient Transferred Out</td>
+                            <td><!-- <obs conceptId="1673"/> --></td>
+                        </tr>
+                        <tr>
+                            <td><!-- <obs id="date_died" conceptId="1661"/> --></td>
+                            <td>Patient Died</td>
+                            <td>Cause of Death<!-- <obs conceptId="1663" answerConceptIds="86,84,6562,6611,16,6613,507,5041,123,60,43,6612,6610,102,58,1067,1677,1665,1664,5622" answerLabels="Accident motor vehicle, Accident not otherwise specified,Decline to answer,Disease or Illness,Diarrhea,Injury accident or trauma,Kaposi's sarcoma,Lymphoma,Malaria,Meningitis, nos,Pneumonia,Relating to childbirth,Suicide,Toxicity drug,Tuberculosis,Unknown,Other cns disease,Other hiv related illness,Other non hiv related illness,Other"/> --></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td style="font-weight:bold;">ART Treatment Interruptions</td>
+            </tr>
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td>Dates</td>
+                            <td>Reason for Interruption</td>
+                            <td>Reason For Stop</td>
+                            <td>Date Restarted</td>
+                        </tr>
+                        <tr>
+                            <!--
+                            <obsgroup groupingConceptId="6779">
+                                <td style="vertical-align:top;"><obs id="interruption_date" conceptId="6753" /></td>
+                                <td style="vertical-align:top;">
+                                    <obs conceptId="6755" answerConceptId="5240" answerLabel="Lost to Follow-up" style="radio"/> <br/>
+                                    <obs conceptId="6755" answerConceptId="1260" answerLabel="Stop [Select Stop Reason]-&gt;" style="radio"/>
+                                </td>
+                                <td>
+                                    <obs conceptId="6507" answerConceptId="1413" answerLabel="Toxicity/Side effects" style="checkbox"/>  <br/>
+                                    <obs conceptId="6507" answerConceptId="44" answerLabel="Pregnancy" style="checkbox"/>  <br/>
+                                    <obs conceptId="6507" answerConceptId="843" answerLabel="Treatment failure" style="checkbox"/>  <br/>
+                                    <obs conceptId="6507" answerConceptId="6194" answerLabel="Poor adherence" style="checkbox"/>  <br/>
+                                    <obs conceptId="6507" answerConceptId="6193" answerLabel="Illness, Hospitalization" style="checkbox"/>  <br/>
+                                    <obs conceptId="6507" answerConceptId="1417" answerLabel="Drug out of stock" style="checkbox"/>  <br/>
+                                    <obs conceptId="6507" answerConceptId="6170" answerLabel="Patient lacks finances" style="checkbox"/>  <br/>
+                                    <obs conceptId="6507" answerConceptId="6195" answerLabel="Planned treatment interruptions" style="checkbox"/>  <br/>
+                                    <obs conceptId="6507" answerConceptId="5622" answerLabel="Other" style="checkbox"/>
+                                </td>
+                                <td style="vertical-align:top;"><obs id="date_restarted" conceptId="6754"/></td>
+                            </obsgroup>
+                             -->
+                            <td></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <!-- Submit button-->
+            <tr>
+                <td style="text-align:center;">
+                    <div class="ke-form-buttons">
+                        <submit />
+                    </div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+</htmlform>
