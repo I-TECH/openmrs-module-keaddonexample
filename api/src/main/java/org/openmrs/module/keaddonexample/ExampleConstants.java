@@ -19,7 +19,13 @@ package org.openmrs.module.keaddonexample;
  */
 public class ExampleConstants {
 
-	public static final String APP_EXAMPLE = "keaddonexample.example";
+	/**
+	 * Module ID
+	 */
+	public static final String MODULE_ID = "keaddonexample";
 
-	public static final String EXAMPLE_ADDON_FORM_UUID = "b694b1bc-2086-47dd-a4ad-ba48f9471e4b";
+	/**
+	 * App IDs
+	 */
+	public static final String APP_EXAMPLE = MODULE_ID + ".example";
 }

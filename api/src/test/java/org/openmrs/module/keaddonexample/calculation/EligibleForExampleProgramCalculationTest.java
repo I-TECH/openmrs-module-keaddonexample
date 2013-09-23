@@ -15,11 +15,14 @@
 package org.openmrs.module.keaddonexample.calculation;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.openmrs.api.context.Context;
 import org.openmrs.calculation.patient.PatientCalculationService;
 import org.openmrs.calculation.result.CalculationResultMap;
+import org.openmrs.module.keaddonexample.metadata.ExampleMetadata;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,6 +31,14 @@ import java.util.List;
  * Tests for {@link EligibleForExampleProgramCalculation}
  */
 public class EligibleForExampleProgramCalculationTest extends BaseModuleContextSensitiveTest {
+
+	@Autowired
+	private ExampleMetadata exampleMetadata;
+
+	@Before
+	public void setup() {
+		exampleMetadata.install();
+	}
 
 	@Test
 	public void evaluate() {
