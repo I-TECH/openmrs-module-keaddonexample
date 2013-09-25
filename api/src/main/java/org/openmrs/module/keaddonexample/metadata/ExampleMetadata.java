@@ -14,35 +14,32 @@
 
 package org.openmrs.module.keaddonexample.metadata;
 
-import org.openmrs.module.kenyacore.metadata.AbstractMetadataProvider;
-import org.openmrs.module.kenyacore.metadata.installer.CoreMetadataInstaller;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.openmrs.module.kenyacore.metadata.bundle.AbstractMetadataBundle;
 import org.springframework.stereotype.Component;
 
+import static org.openmrs.module.kenyacore.metadata.bundle.Constructors.*;
+
 /**
- * Example metadata provider
+ * Example metadata bundle
  */
 @Component
-public class ExampleMetadata extends AbstractMetadataProvider {
+public class ExampleMetadata extends AbstractMetadataBundle {
 
-	public static class EncounterType {
+	public static class _EncounterType {
 		public static final String EXAMPLE = "d69dedbd-3933-4e44-8292-bea939ce980a";
 	}
 
-	public static class Form {
+	public static class _Form {
 		public static final String EXAMPLE = "b694b1bc-2086-47dd-a4ad-ba48f9471e4b";
 	}
 
-	@Autowired
-	private CoreMetadataInstaller installer;
-
 	/**
-	 * @see org.openmrs.module.kenyacore.metadata.AbstractMetadataProvider#install()
+	 * @see org.openmrs.module.kenyacore.metadata.bundle.AbstractMetadataBundle#install()
 	 */
 	@Override
 	public void install() {
-		installer.encounterType("Example encounter", "Just an example", EncounterType.EXAMPLE);
+		install(encounterType("Example encounter", "Just an example", _EncounterType.EXAMPLE));
 
-		installer.form("Example form", null, EncounterType.EXAMPLE, "1", Form.EXAMPLE);
+		install(form("Example form", null, _EncounterType.EXAMPLE, "1", _Form.EXAMPLE));
 	}
 }
