@@ -27,13 +27,14 @@
 	</bean>
 
 	<bean id="keaddonexample.config.form" class="org.openmrs.module.kenyacore.form.FormConfiguration">
-		<!-- To add form to the general visit form list -->
+		<!-- Example of adding a form to the general visit form list -->
 		<property name="commonVisitForms">
 			<set>
 				<ref bean="keaddonexample.form.example" />
 			</set>
 		</property>
-		<!-- To add form to the HIV program visit form list -->
+
+		<!-- Example of adding a form to the HIV program visit form list -->
 		<!--<property name="programVisitForms">
 			<map>
 				<entry key-ref="kenyaemr.program.hiv">
@@ -41,6 +42,8 @@
 				</entry>
 			</map>
 		</property>-->
+
+		<!-- Example of disabling an existing form. This form will no longer appear in the "Available Forms" list -->
 		<property name="disabledForms">
 			<set>
 				<ref bean="kenyaemr.common.form.progressNote" />
