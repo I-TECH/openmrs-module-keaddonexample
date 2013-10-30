@@ -13,6 +13,9 @@
 		<property name="label" value="Chart"/>
 	</bean>
 
+	<bean id="kenyaemr.common.form.progressNote" class="org.openmrs.module.kenyacore.form.FormDescriptor">
+	</bean>
+
 	<!-- 
 	From applicationContext-service.xml in openmrs-api
 	Needed to override and add hibernate mappings to the classpath since omod is not packaged yet 

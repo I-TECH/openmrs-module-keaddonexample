@@ -41,6 +41,11 @@
 				</entry>
 			</map>
 		</property>-->
+		<property name="disabledForms">
+			<set>
+				<ref bean="kenyaemr.common.form.progressNote" />
+			</set>
+		</property>
 	</bean>
 	
 </beans>
