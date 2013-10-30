@@ -17,7 +17,7 @@ package org.openmrs.module.keaddonexample.metadata;
 import org.openmrs.module.kenyacore.metadata.bundle.AbstractMetadataBundle;
 import org.springframework.stereotype.Component;
 
-import static org.openmrs.module.kenyacore.metadata.bundle.Constructors.*;
+import static org.openmrs.module.kenyacore.metadata.bundle.CoreConstructors.*;
 
 /**
  * Example metadata bundle
