@@ -33,10 +33,10 @@
 		<calculationVersion>1.0</calculationVersion>
 		<htmlformentryVersion>2.2.1</htmlformentryVersion>
 		<idgenVersion>2.6</idgenVersion>
-		<kenyacoreVersion>0.16</kenyacoreVersion>
-		<kenyaemrVersion>13.3-RC2</kenyaemrVersion>
-		<kenyauiVersion>1.13.1</kenyauiVersion>
-		<metadatadeployVersion>0.1</metadatadeployVersion>
+		<kenyacoreVersion>1.0</kenyacoreVersion>
+		<kenyaemrVersion>13.3-RC3</kenyaemrVersion>
+		<kenyauiVersion>1.13.3</kenyauiVersion>
+		<metadatadeployVersion>0.2</metadatadeployVersion>
 		<metadatasharingVersion>1.1.8</metadatasharingVersion>
 		<reportingVersion>0.8</reportingVersion>
 		<serializationxstreamVersion>0.2.7</serializationxstreamVersion>
