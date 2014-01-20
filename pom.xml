@@ -29,14 +29,14 @@
 		<openMRSVersion>1.9.7</openMRSVersion>
 
 		<!-- Module dependencies -->
-		<appframeworkVersion>1.5</appframeworkVersion>
+		<appframeworkVersion>2.1-SNAPSHOT</appframeworkVersion>
 		<calculationVersion>1.0</calculationVersion>
 		<htmlformentryVersion>2.2.1</htmlformentryVersion>
 		<idgenVersion>2.6</idgenVersion>
-		<kenyacoreVersion>1.0.1</kenyacoreVersion>
-		<kenyaemrVersion>13.3-RC3</kenyaemrVersion>
-		<kenyauiVersion>1.13.4</kenyauiVersion>
-		<metadatadeployVersion>0.2</metadatadeployVersion>
+		<kenyacoreVersion>2.0-SNAPSHOT</kenyacoreVersion>
+		<kenyaemrVersion>14.1-SNAPSHOT</kenyaemrVersion>
+		<kenyauiVersion>2.0-SNAPSHOT</kenyauiVersion>
+		<metadatadeployVersion>1.0-SNAPSHOT</metadatadeployVersion>
 		<metadatasharingVersion>1.1.8</metadatasharingVersion>
 		<reportingVersion>0.8.1</reportingVersion>
 		<serializationxstreamVersion>0.2.7</serializationxstreamVersion>

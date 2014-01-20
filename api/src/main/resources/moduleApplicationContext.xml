@@ -5,11 +5,14 @@
 
 	<!-- Apps -->
 
-	<bean id="keaddonexample.app.example" class="org.openmrs.module.appframework.SimpleAppDescriptor">
-		<property name="id" value="keaddonexample.example"/>
-		<property name="label" value="Example"/>
-		<property name="homepageUrl" value="keaddonexample/example/home.page"/>
-		<property name="iconUrl" value="keaddonexample:apps/example.png"/>
+	<bean id="keaddonexample.app.example" class="org.openmrs.module.appframework.domain.AppDescriptor">
+		<constructor-arg name="id" value="keaddonexample.example" />
+		<constructor-arg name="description" value="" />
+		<constructor-arg name="label" value="Example" />
+		<constructor-arg name="url" value="keaddonexample/example/home.page" />
+		<constructor-arg name="icon" value="keaddonexample:apps/example.png" />
+		<constructor-arg name="tinyIcon" value="" />
+		<constructor-arg name="order" value="700" />
 	</bean>
 
 	<!-- Forms -->

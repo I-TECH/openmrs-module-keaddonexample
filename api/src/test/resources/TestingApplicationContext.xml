@@ -3,18 +3,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-	<bean id="kenyaemr.app.clinician" class="org.openmrs.module.appframework.SimpleAppDescriptor">
-		<property name="id" value="kenyaemr.medicalEncounter"/>
-		<property name="label" value="Clinician"/>
-	</bean>
+	<!-- Stub beans for content defined elsewhere -->
 
-	<bean id="kenyaemr.app.chart" class="org.openmrs.module.appframework.SimpleAppDescriptor">
-		<property name="id" value="kenyaemr.medicalChart"/>
-		<property name="label" value="Chart"/>
-	</bean>
+	<bean id="kenyaemr.app.clinician" class="org.openmrs.module.appframework.domain.AppDescriptor" />
+	<bean id="kenyaemr.app.chart" class="org.openmrs.module.appframework.domain.AppDescriptor" />
 
-	<bean id="kenyaemr.common.form.progressNote" class="org.openmrs.module.kenyacore.form.FormDescriptor">
-	</bean>
+	<bean id="kenyaemr.common.form.progressNote" class="org.openmrs.module.kenyacore.form.FormDescriptor" />
 
 	<!-- 
 	From applicationContext-service.xml in openmrs-api
