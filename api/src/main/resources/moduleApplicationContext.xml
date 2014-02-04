@@ -5,14 +5,12 @@
 
 	<!-- Apps -->
 
-	<bean id="keaddonexample.app.example" class="org.openmrs.module.appframework.domain.AppDescriptor">
-		<constructor-arg name="id" value="keaddonexample.example" />
-		<constructor-arg name="description" value="" />
-		<constructor-arg name="label" value="Example" />
-		<constructor-arg name="url" value="keaddonexample/example/home.page" />
-		<constructor-arg name="icon" value="keaddonexample:apps/example.png" />
-		<constructor-arg name="tinyIcon" value="" />
-		<constructor-arg name="order" value="700" />
+	<bean id="keaddonexample.app.example" factory-bean="kenyacore.appFactoryBean" factory-method="createInstance">
+		<constructor-arg value="keaddonexample.example" />
+		<constructor-arg value="Example" />
+		<constructor-arg value="keaddonexample/example/home.page" />
+		<constructor-arg value="keaddonexample:apps/example.png" />
+		<constructor-arg value="700" />
 	</bean>
 
 	<!-- Forms -->
