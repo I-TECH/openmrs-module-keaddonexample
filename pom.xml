@@ -9,16 +9,16 @@
 	<name>KenyaEMR Add-on Example Module</name>
 	<description>Example of adding content to KenyaEMR</description>
 
-	<developers>
-		<developer>
-			<name>I-TECH</name>
-		</developer>
-	</developers>
-	
 	<organization>
-		<name>OpenMRS</name>
-		<url>http://openmrs.org</url>
+		<name>I-TECH</name>
+		<url>http://www.go2itech.org</url>
 	</organization>
+
+	<scm>
+		<connection>scm:git:git@github.com:I-TECH/openmrs-module-keaddonexample.git</connection>
+		<developerConnection>scm:git:git@github.com:I-TECH/openmrs-module-keaddonexample.git</developerConnection>
+		<url>scm:git:git@github.com:I-TECH/openmrs-module-keaddonexample.git</url>
+	</scm>
 
 	<modules>
 		<module>api</module>
