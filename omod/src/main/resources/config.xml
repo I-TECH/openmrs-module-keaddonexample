@@ -11,7 +11,7 @@
 	<require_modules>
 		<require_module version="${kenyaemrVersion}">org.openmrs.module.kenyaemr</require_module>
 	</require_modules>
-	<activator>${project.parent.groupId}.${project.parent.artifactId}.KenyaLabActivator</activator>
+	<activator>${project.parent.groupId}.${project.parent.artifactId}.ExampleActivator</activator>
 	<messages>
 		<lang>en</lang>
 		<file>messages.properties</file>

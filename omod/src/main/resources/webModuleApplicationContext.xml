@@ -7,7 +7,7 @@
 	<!-- UI Framework setup -->
 
 	<bean class="org.openmrs.ui.framework.StandardModuleUiConfiguration">
-		<property name="moduleId" value="kenyalab"/>
+		<property name="moduleId" value="keaddonexample"/>
 	</bean>
 		
 </beans>

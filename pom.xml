@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.openmrs.module</groupId>
-	<artifactId>kenyalab</artifactId>
+	<artifactId>keaddonexample</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>Kenya Lab module</name>
-	<description>Module that will provide lab functionality to kenyaEMR</description>
+	<name>KenyaEMR Add-on Example Module</name>
+	<description>Example of adding content to KenyaEMR</description>
 
 	<organization>
 		<name>I-TECH</name>
@@ -15,9 +15,9 @@
 	</organization>
 
 	<scm>
-		<connection>scm:git:git@github.com:ningosi/openmrs-module-kenyalab.git</connection>
-		<developerConnection>scm:git:git@github.com:ningosi/openmrs-module-kenyalab.git</developerConnection>
-		<url>scm:git:git@github.com:ningosi/openmrs-module-kenyalab.git</url>
+		<connection>scm:git:git@github.com:I-TECH/openmrs-module-keaddonexample.git</connection>
+		<developerConnection>scm:git:git@github.com:I-TECH/openmrs-module-keaddonexample.git</developerConnection>
+		<url>scm:git:git@github.com:I-TECH/openmrs-module-keaddonexample.git</url>
 	</scm>
 
 	<modules>
@@ -30,17 +30,17 @@
 
 		<!-- Module dependencies -->
 		<appframeworkVersion>2.1</appframeworkVersion>
-		<calculationVersion>1.1</calculationVersion>
-		<htmlformentryVersion>2.4-SNAPSHOT</htmlformentryVersion>
+		<calculationVersion>1.0</calculationVersion>
+		<htmlformentryVersion>2.2.1</htmlformentryVersion>
 		<idgenVersion>2.6</idgenVersion>
-		<kenyacoreVersion>2.1-SNAPSHOT</kenyacoreVersion>
-		<kenyauiVersion>2.0.3-SNAPSHOT</kenyauiVersion>
-		<metadatadeployVersion>1.3-SNAPSHOT</metadatadeployVersion>
+		<kenyacoreVersion>2.0-SNAPSHOT</kenyacoreVersion>
+		<kenyaemrVersion>14.1-SNAPSHOT</kenyaemrVersion>
+		<kenyauiVersion>2.0-SNAPSHOT</kenyauiVersion>
+		<metadatadeployVersion>1.1</metadatadeployVersion>
 		<metadatasharingVersion>1.1.8</metadatasharingVersion>
-		<reportingVersion>0.8.2</reportingVersion>
+		<reportingVersion>0.8.1</reportingVersion>
 		<serializationxstreamVersion>0.2.7</serializationxstreamVersion>
-		<uiframeworkVersion>3.2</uiframeworkVersion>
-		<kenyaemrVersion>14.2-SNAPSHOT</kenyaemrVersion>
+		<uiframeworkVersion>3.1</uiframeworkVersion>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -48,12 +48,7 @@
 	<dependencyManagement>
 		<dependencies>
 
-			<dependency>
-				<groupId>org.openmrs.module</groupId>
-				<artifactId>kenyaemr-api</artifactId>
-				<version>${kenyaemrVersion}</version>
-				<scope>provided</scope>
-			</dependency>
+			<!-- Begin OpenMRS modules -->
 
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
