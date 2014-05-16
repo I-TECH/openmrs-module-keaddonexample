@@ -4,14 +4,14 @@
 
 	<parent>
 		<groupId>org.openmrs.module</groupId>
-		<artifactId>keaddonexample</artifactId>
+		<artifactId>kenyalab</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>keaddonexample-omod</artifactId>
+	<artifactId>kenyalab-omod</artifactId>
 	<packaging>jar</packaging>
-	<name>KenyaEMR Add-on Example Module OMOD</name>
-	<description>OMOD project for KenyaEMR Add-on Example</description>
+	<name>KenyaLab Module OMOD</name>
+	<description>Module that will provide lab functionality to kenyaEMR</description>
 
 	<dependencies>
 

@@ -4,18 +4,27 @@
 
 	<parent>
 		<groupId>org.openmrs.module</groupId>
-		<artifactId>keaddonexample</artifactId>
+		<artifactId>kenyalab</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>keaddonexample-api</artifactId>
+	<artifactId>kenyalab-api</artifactId>
 	<packaging>jar</packaging>
-	<name>KenyaEMR Add-on Example Module API</name>
-	<description>API project for KenyaEMR Add-on Example</description>
+	<name>KenyaLab Module API</name>
+	<description>Module that will provide lab functionality to kenyaEMR</description>
 
 	<dependencies>
 
 		<!-- Begin OpenMRS modules -->
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>kenyaemr-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>kenyaui-api</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
